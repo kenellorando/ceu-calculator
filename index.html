@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OPD CEU Calculator</title>
+
+</head>
+
+<body>
+            <label>Spring<input type="radio" name="springInput"></label>
+           
+            <label>Start Time</label><input id="startInput" type="text" placeholder="1700">
+            <label>End Time</label><input id="endInput" type="text" placeholder="1815">
+
+
+
+    <span id='output'></span>
+
+    <script type="text/javascript">
+
+        let classRunTime = document.getElementById("endInput").value - document.getElementById("startInput").value;
+        console.log(classRunTime);
+        
+
+    </script>
+    
+</body>
+
+</html>
