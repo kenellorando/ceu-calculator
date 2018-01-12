@@ -7,23 +7,54 @@
 </head>
 
 <body>
-            <label>Spring<input type="radio" name="springInput"></label>
-           
-            <label>Start Time</label><input id="startInput" type="text" placeholder="1700">
-            <label>End Time</label><input id="endInput" type="text" placeholder="1815">
+    <div>
+        <h2>Term</h2>
+        <input id="springInput" type="radio" name="term" value="spring"/>
+        <input id="summerInput" type="radio" name="term" value="summer"/>
+        <input id="fallInput" type="radio" name="term" value="fall"/>
+    </div>
+   
+    <div>
+        <h2>Class times</h2>
+        <div><label>Start Time</label><input id="startInput" type="text" placeholder="1700"></div>
+        <div><label>End Time</label><input id="endInput" type="text" placeholder="1815"></div>
+    </div>
 
 
+    
 
-    <span id='output'></span>
 
     <script type="text/javascript">
+        let springInput = document.getElementById('springInput').checked;
+        let summerInput = document.getElementById('summerInput').checked;
+        let fallInput = document.getElementById('fallInput').checked;
 
+        let daysOff = {
+            "monday":"0",
+            "tuesday":"0",
+            "wednesday":"0",
+            "thursday":"0",
+            "friday":"0"
+        }
+        
+        if (springInput) {
+            console.log("Spring term selected")
+        } else if (summerInput) {
+            console.log("Summer term selected")
+        } else if (fallInput) {
+            console.log("Fall term selected")
+        } else {
+            console.log("Unknown term")
+        }
+    
+        // Calculate single class time in minutes
         let classRunTime = document.getElementById("endInput").value - document.getElementById("startInput").value;
         console.log(classRunTime);
         
 
+        
     </script>
-    
+
 </body>
 
 </html>
