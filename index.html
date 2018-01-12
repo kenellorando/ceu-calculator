@@ -9,9 +9,9 @@
 <body>
     <div>
         <h2>Term</h2>
-        <input id="springInput" type="radio" name="term" value="spring"/>
-        <input id="summerInput" type="radio" name="term" value="summer"/>
-        <input id="fallInput" type="radio" name="term" value="fall"/>
+        <input id="springInput" type="radio" name="term" value="spring"/>Spring
+        <input id="summerInput" type="radio" name="term" value="summer"/>Summer
+        <input id="fallInput" type="radio" name="term" value="fall"/>Fall
     </div>
    
     <div>
@@ -20,6 +20,14 @@
         <div><label>End Time</label><input id="endInput" type="text" placeholder="1815"></div>
     </div>
 
+    <div>
+        <h2>Class days of week</h2>
+        <input id="mondayInput" type="checkbox" name="dotw" value="monday">Monday
+        <input id="tuesdayInput" type="checkbox" name="dotw" value="tuesday">Tuesday
+        <input id="wednesdayInput" type="checkbox" name="dotw" value="wednesday">Wednesday
+        <input id="thursdayInput" type="checkbox" name="dotw" value="thursday">Thursday
+        <input id="fridayInput" type="checkbox" name="dotw" value="friday">Friday
+    </div>
 
     
 
@@ -29,23 +37,57 @@
         let summerInput = document.getElementById('summerInput').checked;
         let fallInput = document.getElementById('fallInput').checked;
 
-        let daysOff = {
+        // Initialize counting total number of days of class
+        let daysOfClass = {
             "monday":"0",
             "tuesday":"0",
             "wednesday":"0",
             "thursday":"0",
             "friday":"0"
         }
+
+        // Check days of week of class
+        let mondayInput = document.getElementById('mondayInput').checked;
+        let tuesdayInput = document.getElementById('tuesdayInput').checked;
+        let wednesdayInput = document.getElementById('wednesdayInput').checked;
+        let thursdayInput = document.getElementById('thursdayInput').checked;
+        let fridayInput = document.getElementById('fridayInput').checked;
         
+
+        // Add fifteen classes to each day class is held
+        // Note: Not accurate for summer term yet
+        if (mondayInput) {
+            daysOfClass.monday += 15;
+        } if (tuesdayInput) {
+            daysOfClass.tuesday += 15;
+        } if (wednesdayInput) {
+            daysOfClass.wednesday += 15;
+        } if (thursdayInput) {
+            daysOfClass.thursday += 15;
+        } if (fridayInput) {
+            daysOfClass.friday += 15;
+        } 
+
+        
+        // Subtract days off from days of class for selected term
         if (springInput) {
             console.log("Spring term selected")
+            daysOfClass.monday -= 2;
+            daysOfClass.tuesday -= 1;
+            daysOfClass.wednesday -= 1;
+            daysOfClass.thursday -= 1;
+            daysOfClass.friday -= 1;
         } else if (summerInput) {
             console.log("Summer term selected")
         } else if (fallInput) {
             console.log("Fall term selected")
+            daysOfClass.thursday -= 1;
+            daysOfClass.friday -= 1;
         } else {
             console.log("Unknown term")
         }
+
+        console.log(daysOfClass);
     
         // Calculate single class time in minutes
         let classRunTime = document.getElementById("endInput").value - document.getElementById("startInput").value;
