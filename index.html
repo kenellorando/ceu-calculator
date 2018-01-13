@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>OPD CEU Calculator</title>
@@ -9,15 +10,21 @@
 <body>
     <div>
         <h2>Term</h2>
-        <input id="springInput" type="radio" name="term" value="spring"/>Spring
-        <input id="summerInput" type="radio" name="term" value="summer"/>Summer
-        <input id="fallInput" type="radio" name="term" value="fall"/>Fall
+        <input id="springInput" type="radio" name="term" value="spring" />Spring
+        <input id="summerInput" type="radio" name="term" value="summer" />Summer
+        <input id="fallInput" type="radio" name="term" value="fall" />Fall
     </div>
-   
+
     <div>
         <h2>Class times</h2>
-        <div><label>Start Time</label><input id="startInput" type="text" placeholder="1700"></div>
-        <div><label>End Time</label><input id="endInput" type="text" placeholder="1815"></div>
+        <div>
+            <label>Start Time</label>
+            <input id="startInput" type="text" placeholder="1700">
+        </div>
+        <div>
+            <label>End Time</label>
+            <input id="endInput" type="text" placeholder="1815">
+        </div>
     </div>
 
     <div>
@@ -29,6 +36,10 @@
         <input id="fridayInput" type="checkbox" name="dotw" value="friday">Friday
     </div>
 
+    <footer>
+        <p>0.1.0</p>
+    </footer>
+
     <script type="text/javascript">
         let springInput = document.getElementById('springInput').checked;
         let summerInput = document.getElementById('summerInput').checked;
@@ -36,11 +47,11 @@
 
         // Initialize counting total number of days of class
         let daysOfClass = {
-            "monday":"0",
-            "tuesday":"0",
-            "wednesday":"0",
-            "thursday":"0",
-            "friday":"0"
+            "monday": "0",
+            "tuesday": "0",
+            "wednesday": "0",
+            "thursday": "0",
+            "friday": "0"
         }
 
         // Check days of week of class
@@ -49,23 +60,27 @@
         let wednesdayInput = document.getElementById('wednesdayInput').checked;
         let thursdayInput = document.getElementById('thursdayInput').checked;
         let fridayInput = document.getElementById('fridayInput').checked;
-        
+
 
         // Add fifteen classes to each day class is held
         // Note: Not accurate for summer term yet
         if (mondayInput) {
             daysOfClass.monday += 15;
-        } if (tuesdayInput) {
+        }
+        if (tuesdayInput) {
             daysOfClass.tuesday += 15;
-        } if (wednesdayInput) {
+        }
+        if (wednesdayInput) {
             daysOfClass.wednesday += 15;
-        } if (thursdayInput) {
+        }
+        if (thursdayInput) {
             daysOfClass.thursday += 15;
-        } if (fridayInput) {
+        }
+        if (fridayInput) {
             daysOfClass.friday += 15;
-        } 
+        }
 
-        
+
         // Subtract days off from days of class for selected term
         if (springInput) {
             console.log("Spring term selected")
@@ -95,23 +110,20 @@
         }
 
         console.log("Class days: " + totalClasses);
-    
+
         // Read given start and end times
         let endTimeInput = document.getElementById("endInput").value;
         let startTimeInput = document.getElementById("startInput").value;
 
         // Convert to minutes
-        let endTimeMinutes = endTimeInput.substring(0,2) * 60 + parseInt(endTimeInput.substring(2,4));
-        let startTimeMinutes = startTimeInput.substring(0,2) * 60 + parseInt(startTimeInput.substring(2,4));
+        let endTimeMinutes = endTimeInput.substring(0, 2) * 60 + parseInt(endTimeInput.substring(2, 4));
+        let startTimeMinutes = startTimeInput.substring(0, 2) * 60 + parseInt(startTimeInput.substring(2, 4));
         let classRunTime = endTimeMinutes - startTimeMinutes;
-        
+
         // Calculate CEU
         let CEU = (classRunTime * totalClasses) / 600;
         console.log(CEU);
-
-        
     </script>
-
 </body>
 
 </html>
