@@ -29,9 +29,6 @@
         <input id="fridayInput" type="checkbox" name="dotw" value="friday">Friday
     </div>
 
-    
-
-
     <script type="text/javascript">
         let springInput = document.getElementById('springInput').checked;
         let summerInput = document.getElementById('summerInput').checked;
@@ -99,10 +96,18 @@
 
         console.log("Class days: " + totalClasses);
     
-        // Calculate single class time in minutes
-        let classRunTime = document.getElementById("endInput").value - document.getElementById("startInput").value;
-        console.log(classRunTime);
+        // Read given start and end times
+        let endTimeInput = document.getElementById("endInput").value;
+        let startTimeInput = document.getElementById("startInput").value;
+
+        // Convert to minutes
+        let endTimeMinutes = endTimeInput.substring(0,2) * 60 + parseInt(endTimeInput.substring(2,4));
+        let startTimeMinutes = startTimeInput.substring(0,2) * 60 + parseInt(startTimeInput.substring(2,4));
+        let classRunTime = endTimeMinutes - startTimeMinutes;
         
+        // Calculate CEU
+        let CEU = (classRunTime * totalClasses) / 600;
+        console.log(CEU);
 
         
     </script>
