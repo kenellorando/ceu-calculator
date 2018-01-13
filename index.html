@@ -36,11 +36,16 @@
         <input id="fridayInput" type="checkbox" name="dotw" value="friday">Friday
     </div>
 
-    <footer>
-        <p>0.1.0</p>
-    </footer>
+    <div>
+        <p>Calculated CEU's:<span id="CEU"></span></p>
+    </div>
+
+    <button onclick="main()"></button>
+
+    <footer>0.1.0 by Ken Ellorando</footer>
 
     <script type="text/javascript">
+    function main() {
         let springInput = document.getElementById('springInput').checked;
         let summerInput = document.getElementById('summerInput').checked;
         let fallInput = document.getElementById('fallInput').checked;
@@ -91,8 +96,11 @@
             daysOfClass.friday -= 1;
         } else if (summerInput) {
             console.log("Summer term selected")
+            daysOfClass.monday -= 1;
         } else if (fallInput) {
             console.log("Fall term selected")
+            daysOfClass.monday -= 2;
+            daysOfClass.wednesday -= 1;
             daysOfClass.thursday -= 1;
             daysOfClass.friday -= 1;
         } else {
@@ -123,6 +131,8 @@
         // Calculate CEU
         let CEU = (classRunTime * totalClasses) / 600;
         console.log(CEU);
+        document.getElementById("CEU").innerHTML = CEU;
+    }
     </script>
 </body>
 
