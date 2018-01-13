@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <h1>OPD Continuing Education Unit (CEU) Calculator</h1>
     <div>
         <h2>Term</h2>
         <input id="springInput" type="radio" name="term" value="spring" />Spring
@@ -37,103 +38,113 @@
     </div>
 
     <div>
-        <h2>Results</h2>
-        <p>Calculated CEU's:<span id="CEU"></span></p>
+        <button onclick="main()">CALCULATE</button>
     </div>
 
-    <button onclick="main()">CALCULATE</button>
+    <div>
+        <h2>Results</h2>
+        <p>Calculated CEU's:
+            <span id="CEU"></span>
+        </p>
+    </div>
 
-    <footer>0.1.0 by Ken Ellorando</footer>
+
+    <footer>
+        <p>
+            <a href="https://github.com/kenellorando/ceu-calculator">View Source</a>
+        </p>
+        <p>0.1.0 by Ken Ellorando</p>
+    </footer>
 
     <script type="text/javascript">
-    function main() {
-        let springInput = document.getElementById('springInput').checked;
-        let summerInput = document.getElementById('summerInput').checked;
-        let fallInput = document.getElementById('fallInput').checked;
+        function main() {
+            let springInput = document.getElementById('springInput').checked;
+            let summerInput = document.getElementById('summerInput').checked;
+            let fallInput = document.getElementById('fallInput').checked;
 
-        // Initialize counting total number of days of class
-        let daysOfClass = {
-            "monday": 0,
-            "tuesday": 0,
-            "wednesday": 0,
-            "thursday": 0,
-            "friday": 0
-        }
-
-        // Check days of week of class
-        let mondayInput = document.getElementById('mondayInput').checked;
-        let tuesdayInput = document.getElementById('tuesdayInput').checked;
-        let wednesdayInput = document.getElementById('wednesdayInput').checked;
-        let thursdayInput = document.getElementById('thursdayInput').checked;
-        let fridayInput = document.getElementById('fridayInput').checked;
-
-
-        // Add fifteen classes to each day class is held
-        // Note: Not accurate for summer term yet
-        if (mondayInput) {
-            daysOfClass.monday += 15;
-        }
-        if (tuesdayInput) {
-            daysOfClass.tuesday += 15;
-        }
-        if (wednesdayInput) {
-            daysOfClass.wednesday += 15;
-        }
-        if (thursdayInput) {
-            daysOfClass.thursday += 15;
-        }
-        if (fridayInput) {
-            daysOfClass.friday += 15;
-        }
-
-
-        // Subtract days off from days of class for selected term
-        if (springInput) {
-            console.log("Spring term selected")
-            daysOfClass.monday -= 2;
-            daysOfClass.tuesday -= 1;
-            daysOfClass.wednesday -= 1;
-            daysOfClass.thursday -= 1;
-            daysOfClass.friday -= 1;
-        } else if (summerInput) {
-            console.log("Summer term selected")
-            daysOfClass.monday -= 1;
-        } else if (fallInput) {
-            console.log("Fall term selected")
-            daysOfClass.monday -= 2;
-            daysOfClass.wednesday -= 1;
-            daysOfClass.thursday -= 1;
-            daysOfClass.friday -= 1;
-        } else {
-            console.log("Unknown term")
-        }
-
-        console.log(daysOfClass);
-
-        // Total the number of days of class
-        let totalClasses = 0;
-        for (let days in daysOfClass) {
-            if (daysOfClass[days] > 0) {
-                totalClasses += daysOfClass[days];
+            // Initialize counting total number of days of class
+            let daysOfClass = {
+                "monday": 0,
+                "tuesday": 0,
+                "wednesday": 0,
+                "thursday": 0,
+                "friday": 0
             }
+
+            // Check days of week of class
+            let mondayInput = document.getElementById('mondayInput').checked;
+            let tuesdayInput = document.getElementById('tuesdayInput').checked;
+            let wednesdayInput = document.getElementById('wednesdayInput').checked;
+            let thursdayInput = document.getElementById('thursdayInput').checked;
+            let fridayInput = document.getElementById('fridayInput').checked;
+
+
+            // Add fifteen classes to each day class is held
+            // Note: Not accurate for summer term yet
+            if (mondayInput) {
+                daysOfClass.monday += 15;
+            }
+            if (tuesdayInput) {
+                daysOfClass.tuesday += 15;
+            }
+            if (wednesdayInput) {
+                daysOfClass.wednesday += 15;
+            }
+            if (thursdayInput) {
+                daysOfClass.thursday += 15;
+            }
+            if (fridayInput) {
+                daysOfClass.friday += 15;
+            }
+
+
+            // Subtract days off from days of class for selected term
+            if (springInput) {
+                console.log("Spring term selected")
+                daysOfClass.monday -= 2;
+                daysOfClass.tuesday -= 1;
+                daysOfClass.wednesday -= 1;
+                daysOfClass.thursday -= 1;
+                daysOfClass.friday -= 1;
+            } else if (summerInput) {
+                console.log("Summer term selected")
+                daysOfClass.monday -= 1;
+            } else if (fallInput) {
+                console.log("Fall term selected")
+                daysOfClass.monday -= 2;
+                daysOfClass.wednesday -= 1;
+                daysOfClass.thursday -= 1;
+                daysOfClass.friday -= 1;
+            } else {
+                console.log("Unknown term")
+            }
+
+            console.log(daysOfClass);
+
+            // Total the number of days of class
+            let totalClasses = 0;
+            for (let days in daysOfClass) {
+                if (daysOfClass[days] > 0) {
+                    totalClasses += daysOfClass[days];
+                }
+            }
+
+            console.log("Class days: " + totalClasses);
+
+            // Read given start and end times
+            let endTimeInput = document.getElementById("endInput").value;
+            let startTimeInput = document.getElementById("startInput").value;
+
+            // Convert to minutes
+            let endTimeMinutes = endTimeInput.substring(0, 2) * 60 + parseInt(endTimeInput.substring(2, 4));
+            let startTimeMinutes = startTimeInput.substring(0, 2) * 60 + parseInt(startTimeInput.substring(2, 4));
+            let classRunTime = endTimeMinutes - startTimeMinutes;
+
+            // Calculate CEU
+            let CEU = (classRunTime * totalClasses) / 600;
+            console.log(CEU);
+            document.getElementById("CEU").innerHTML = CEU;
         }
-
-        console.log("Class days: " + totalClasses);
-
-        // Read given start and end times
-        let endTimeInput = document.getElementById("endInput").value;
-        let startTimeInput = document.getElementById("startInput").value;
-
-        // Convert to minutes
-        let endTimeMinutes = endTimeInput.substring(0, 2) * 60 + parseInt(endTimeInput.substring(2, 4));
-        let startTimeMinutes = startTimeInput.substring(0, 2) * 60 + parseInt(startTimeInput.substring(2, 4));
-        let classRunTime = endTimeMinutes - startTimeMinutes;
-
-        // Calculate CEU
-        let CEU = (classRunTime * totalClasses) / 600;
-        console.log(CEU);
-        document.getElementById("CEU").innerHTML = CEU;
-    }
     </script>
 </body>
 
