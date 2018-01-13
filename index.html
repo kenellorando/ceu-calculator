@@ -88,6 +88,16 @@
         }
 
         console.log(daysOfClass);
+
+        // Total the number of days of class
+        let totalClasses = 0;
+        for (let days in daysOfClass) {
+            if (daysOfClass[days] > 0) {
+                totalClasses += daysOfClass[days];
+            }
+        }
+
+        console.log("Class days: " + totalClasses);
     
         // Calculate single class time in minutes
         let classRunTime = document.getElementById("endInput").value - document.getElementById("startInput").value;
