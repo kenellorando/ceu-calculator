@@ -5,10 +5,31 @@
     <meta charset="UTF-8">
     <title>OPD CEU Calculator</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>
+        html {
+            font-family: 'Roboto', sans-serif;
+            font-size: 110%;
+        }
+
+        div {
+            padding-bottom: 10px;
+        }
+
+        button {
+            font-size: 120%;
+            padding: 5px;
+            margin: 20px 20px 0px 20px;
+        }
+
+        #CEU {
+            font-size: 2em;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>OPD Continuing Education Unit (CEU) Calculator</h1>
+    <h1>OPD CEU CALCULATOR</h1>
     <div>
         <h2>Term</h2>
         <input id="springInput" type="radio" name="term" value="spring" />Spring
@@ -17,7 +38,7 @@
     </div>
 
     <div>
-        <h2>Class times</h2>
+        <h2>Class Time</h2>
         <div>
             <label>Start Time</label>
             <input id="startInput" type="text" placeholder="1700">
@@ -29,7 +50,7 @@
     </div>
 
     <div>
-        <h2>Class days of week</h2>
+        <h2>Class Days of Week</h2>
         <input id="mondayInput" type="checkbox" name="dotw" value="monday">Monday
         <input id="tuesdayInput" type="checkbox" name="dotw" value="tuesday">Tuesday
         <input id="wednesdayInput" type="checkbox" name="dotw" value="wednesday">Wednesday
@@ -53,7 +74,7 @@
         <p>
             <a href="https://github.com/kenellorando/ceu-calculator">View Source</a>
         </p>
-        <p>0.1.0 by Ken Ellorando</p>
+        <p>0.1.1 by Ken Ellorando</p>
     </footer>
 
     <script type="text/javascript">
@@ -78,7 +99,7 @@
                 "friday": 0
             }
 
-            
+
             // Calculate number of class days
             if (springInput) {
                 if (mondayInput) {
