@@ -58,9 +58,16 @@
 
     <script type="text/javascript">
         function main() {
+            // Terms
             let springInput = document.getElementById('springInput').checked;
             let summerInput = document.getElementById('summerInput').checked;
             let fallInput = document.getElementById('fallInput').checked;
+            // Days of week of class
+            let mondayInput = document.getElementById('mondayInput').checked;
+            let tuesdayInput = document.getElementById('tuesdayInput').checked;
+            let wednesdayInput = document.getElementById('wednesdayInput').checked;
+            let thursdayInput = document.getElementById('thursdayInput').checked;
+            let fridayInput = document.getElementById('fridayInput').checked;
 
             // Initialize counting total number of days of class
             let daysOfClass = {
@@ -71,52 +78,71 @@
                 "friday": 0
             }
 
-            // Check days of week of class
-            let mondayInput = document.getElementById('mondayInput').checked;
-            let tuesdayInput = document.getElementById('tuesdayInput').checked;
-            let wednesdayInput = document.getElementById('wednesdayInput').checked;
-            let thursdayInput = document.getElementById('thursdayInput').checked;
-            let fridayInput = document.getElementById('fridayInput').checked;
-
-
-            // Add fifteen classes to each day class is held
-            // Note: Not accurate for summer term yet
-            if (mondayInput) {
-                daysOfClass.monday += 15;
-            }
-            if (tuesdayInput) {
-                daysOfClass.tuesday += 15;
-            }
-            if (wednesdayInput) {
-                daysOfClass.wednesday += 15;
-            }
-            if (thursdayInput) {
-                daysOfClass.thursday += 15;
-            }
-            if (fridayInput) {
-                daysOfClass.friday += 15;
-            }
-
-
-            // Subtract days off from days of class for selected term
+            
+            // Calculate number of class days
             if (springInput) {
-                console.log("Spring term selected")
+                if (mondayInput) {
+                    daysOfClass.monday += 17;
+                }
+                if (tuesdayInput) {
+                    daysOfClass.tuesday += 17;
+                }
+                if (wednesdayInput) {
+                    daysOfClass.wednesday += 17;
+                }
+                if (thursdayInput) {
+                    daysOfClass.thursday += 17;
+                }
+                if (fridayInput) {
+                    daysOfClass.friday += 17;
+                }
+
                 daysOfClass.monday -= 2;
                 daysOfClass.tuesday -= 1;
                 daysOfClass.wednesday -= 1;
                 daysOfClass.thursday -= 1;
                 daysOfClass.friday -= 1;
             } else if (summerInput) {
-                console.log("Summer term selected")
+                if (mondayInput) {
+                    daysOfClass.monday += 8;
+                }
+                if (tuesdayInput) {
+                    daysOfClass.tuesday += 8;
+                }
+                if (wednesdayInput) {
+                    daysOfClass.wednesday += 8;
+                }
+                if (thursdayInput) {
+                    daysOfClass.thursday += 8;
+                }
+                if (fridayInput) {
+                    daysOfClass.friday += 8;
+                }
+
                 daysOfClass.monday -= 1;
             } else if (fallInput) {
-                console.log("Fall term selected")
+                if (mondayInput) {
+                    daysOfClass.monday += 16;
+                }
+                if (tuesdayInput) {
+                    daysOfClass.tuesday += 16;
+                }
+                if (wednesdayInput) {
+                    daysOfClass.wednesday += 16;
+                }
+                if (thursdayInput) {
+                    daysOfClass.thursday += 16;
+                }
+                if (fridayInput) {
+                    daysOfClass.friday += 16;
+                }
+
                 daysOfClass.monday -= 2;
                 daysOfClass.wednesday -= 1;
                 daysOfClass.thursday -= 1;
                 daysOfClass.friday -= 1;
             } else {
-                console.log("Unknown term")
+                alert("Unknown term")
             }
 
             console.log(daysOfClass);
@@ -142,7 +168,7 @@
 
             // Calculate CEU
             let CEU = (classRunTime * totalClasses) / 600;
-            console.log(CEU);
+            console.log("Calculated CEU:" + CEU);
             document.getElementById("CEU").innerHTML = CEU;
         }
     </script>
