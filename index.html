@@ -24,6 +24,7 @@
 
         #CEU {
             font-size: 2em;
+            margin: 4px;
         }
     </style>
 </head>
@@ -187,8 +188,10 @@
             let startTimeMinutes = startTimeInput.substring(0, 2) * 60 + parseInt(startTimeInput.substring(2, 4));
             let classRunTime = endTimeMinutes - startTimeMinutes;
 
+
+
             // Calculate CEU
-            let CEU = (classRunTime * totalClasses) / 600;
+            let CEU = Math.round( ((classRunTime * totalClasses) / 600) * 10) / 10;
             console.log("Calculated CEU:" + CEU);
             document.getElementById("CEU").innerHTML = CEU;
         }
