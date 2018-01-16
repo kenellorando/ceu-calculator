@@ -73,7 +73,7 @@
 
     <div>
         <h2>Results</h2>
-        <p>Calculated CEU's:
+        <p>CEU's:
             <span id="CEU"></span>
         </p>
     </div>
@@ -196,10 +196,16 @@
             let classRunTime = endTimeMinutes - startTimeMinutes;
 
             // Calculate CEU
-            console.log("Calculated CEU: " + ((classRunTime * totalClasses) / 600));
+            let CEU = (classRunTime * totalClasses) / 600;
+            console.log("Calculated CEU: " + (classRunTime * totalClasses) / 600);
             console.log("Rounded CEU: " + Math.round(((classRunTime * totalClasses) / 600) * 10) / 10);
+            if (CEU > 4.9) {
+                document.getElementById("CEU").innerHTML = "4.9 (Actual: " + (classRunTime * totalClasses) / 600 + ")";
+            } else {
+                document.getElementById("CEU").innerHTML = Math.round(((classRunTime * totalClasses) / 600) * 10) / 10;
+            }
 
-            document.getElementById("CEU").innerHTML = Math.round(((classRunTime * totalClasses) / 600) * 10) / 10;
+            
         }
     </script>
 </body>
