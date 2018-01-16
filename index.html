@@ -100,7 +100,6 @@
                 "friday": 0
             }
 
-
             // Calculate number of class days
             if (springInput) {
                 if (mondayInput) {
@@ -188,12 +187,11 @@
             let startTimeMinutes = startTimeInput.substring(0, 2) * 60 + parseInt(startTimeInput.substring(2, 4));
             let classRunTime = endTimeMinutes - startTimeMinutes;
 
-
-
             // Calculate CEU
-            let CEU = Math.round( ((classRunTime * totalClasses) / 600) * 10) / 10;
-            console.log("Calculated CEU:" + CEU);
-            document.getElementById("CEU").innerHTML = CEU;
+            console.log("Calculated CEU: " + ((classRunTime * totalClasses) / 600));
+            console.log("Rounded CEU: " + Math.round(((classRunTime * totalClasses) / 600) * 10) / 10);
+
+            document.getElementById("CEU").innerHTML = Math.round(((classRunTime * totalClasses) / 600) * 10) / 10;
         }
     </script>
 </body>
