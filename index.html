@@ -203,7 +203,9 @@
             console.log("Calculated CEU: " + (classRunTime * totalClasses) / 600);
             console.log("Rounded CEU: " + Math.round(((classRunTime * totalClasses) / 600) * 10) / 10);
             if (CEU > 4.9) {
-                document.getElementById("CEU").innerHTML = "4.9 (Actual: " + (classRunTime * totalClasses) / 600 + ")";
+                document.getElementById("CEU").innerHTML = "4.9 (Maximum, actual: " + (classRunTime * totalClasses) / 600 + ")";
+            } else if (CEU < 3.8) {
+                document.getElementById("CEU").innerHTML = "3.8 (Minimum, actual: " + (classRunTime * totalClasses) / 600 + ")";
             } else {
                 document.getElementById("CEU").innerHTML = Math.round(((classRunTime * totalClasses) / 600) * 10) / 10;
             }
